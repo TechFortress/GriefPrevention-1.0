@@ -982,6 +982,7 @@ public abstract class DataStore
         if (event.isCancelled())
         {
             result.succeeded = false;
+            result.cancelMessage = event.getCancelMessage();
             result.claim = null;
             return result;
 

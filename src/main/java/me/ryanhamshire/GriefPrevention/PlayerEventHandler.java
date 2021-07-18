@@ -2447,15 +2447,24 @@ class PlayerEventHandler implements Listener
                             //if it didn't succeed, tell the player why
                             if (!result.succeeded)
                             {
-                                GriefPrevention.sendMessage(player, TextMode.Err, Messages.CreateSubdivisionOverlap);
+                                if (result.cancelMessage != null)
+                                {
+                                    GriefPrevention.sendMessage(player, TextMode.Err, result.cancelMessage);
+                                }
+                                else
+                                {
+                                    GriefPrevention.sendMessage(player, TextMode.Err, Messages.CreateSubdivisionOverlap);
 
-                                Visualization visualization = Visualization.FromClaim(result.claim, clickedBlock.getY(), VisualizationType.ErrorClaim, player.getLocation());
+                                    if (result.claim != null)
+                                    {
+                                        Visualization visualization = Visualization.FromClaim(result.claim, clickedBlock.getY(), VisualizationType.ErrorClaim, player.getLocation());
 
-                                // alert plugins of a visualization
-                                Bukkit.getPluginManager().callEvent(new VisualizationEvent(player, visualization, result.claim));
+                                        // alert plugins of a visualization
+                                        Bukkit.getPluginManager().callEvent(new VisualizationEvent(player, visualization, result.claim));
 
-                                Visualization.Apply(player, visualization);
-
+                                        Visualization.Apply(player, visualization);
+                                    }
+                                }
                                 return;
                             }
 
@@ -2616,7 +2625,13 @@ class PlayerEventHandler implements Listener
                 //if it didn't succeed, tell the player why
                 if (!result.succeeded)
                 {
-                    if (result.claim != null)
+                    // If we have a cancel message, we should use that
+                    if(result.cancelMessage != null)
+                    {
+                        GriefPrevention.sendMessage(player, TextMode.Err, result.cancelMessage);
+                    }
+                    // Otherwise if a claim is provided, we can notify the player of an overlap
+                    else if (result.claim != null)
                     {
                         GriefPrevention.sendMessage(player, TextMode.Err, Messages.CreateClaimFailOverlapShort);
 
@@ -2627,6 +2642,7 @@ class PlayerEventHandler implements Listener
 
                         Visualization.Apply(player, visualization);
                     }
+                    // Else send the generic message
                     else
                     {
                         GriefPrevention.sendMessage(player, TextMode.Err, Messages.CreateClaimFailOverlapRegion);

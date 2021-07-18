@@ -3600,6 +3600,19 @@ public class GriefPrevention extends JavaPlugin
         }
     }
 
+    public int getTNTSeaLevel(World world)
+    {
+        Integer overrideValue = this.config_seaLevelOverride.get(world.getName());
+        if (overrideValue == null || overrideValue == -1)
+        {
+            return this.getSeaLevel(world) - 7;
+        }
+        else
+        {
+            return overrideValue;
+        }
+    }
+
     public boolean containsBlockedIP(String message)
     {
         message = message.replace("\r\n", "");

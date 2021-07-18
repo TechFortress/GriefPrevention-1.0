@@ -836,7 +836,8 @@ public class BlockEventHandler implements Listener
 
 
     //ensures fluids don't flow into land claims from outside
-    private Claim lastSpreadClaim = null;
+    private Claim lastSpreadFromClaim = null;
+    private Claim lastSpreadToClaim = null;
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void onBlockFromTo(BlockFromToEvent spreadEvent)
@@ -847,22 +848,24 @@ public class BlockEventHandler implements Listener
         //don't track in worlds where claims are not enabled
         if (!GriefPrevention.instance.claimsEnabledForWorld(spreadEvent.getBlock().getWorld())) return;
 
-        //where to?
-        Block toBlock = spreadEvent.getToBlock();
-        Location toLocation = toBlock.getLocation();
-        Claim toClaim = this.dataStore.getClaimAt(toLocation, false, lastSpreadClaim);
+        //where from and where to?
+        Location fromLocation = spreadEvent.getBlock().getLocation();
+        Location toLocation = spreadEvent.getToBlock().getLocation();
+        Claim fromClaim = this.dataStore.getClaimAt(fromLocation, false, lastSpreadFromClaim);
+        Claim toClaim = this.dataStore.getClaimAt(toLocation, false, lastSpreadToClaim);
 
-        //if into a land claim, it must be from the same land claim
+        //if into a claim, it must be from the claim of the same owner
         if (toClaim != null)
         {
-            this.lastSpreadClaim = toClaim;
-            if (!toClaim.contains(spreadEvent.getBlock().getLocation(), false, true))
+            //due to the nature of what causes this event (fluid flow/spread),
+            //we'll probably run similar checks for the same pair of claims again
+            //so let's cache them to use in claim lookup later
+            this.lastSpreadFromClaim = fromClaim;
+            this.lastSpreadToClaim = toClaim;
+
+            if (fromClaim == null || !Objects.equals(fromClaim.getOwnerID(), toClaim.getOwnerID()))
             {
-                //exception: from parent into subdivision
-                if (toClaim.parent == null || !toClaim.parent.contains(spreadEvent.getBlock().getLocation(), false, false))
-                {
-                    spreadEvent.setCancelled(true);
-                }
+                spreadEvent.setCancelled(true);
             }
         }
 

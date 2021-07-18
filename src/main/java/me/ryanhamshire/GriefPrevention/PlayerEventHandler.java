@@ -140,6 +140,11 @@ class PlayerEventHandler implements Listener
         bannedWordFinder = new WordFinder(instance.dataStore.loadBannedWords());
     }
 
+    protected void resetPattern()
+    {
+        this.howToClaimPattern = null;
+    }
+
     //when a player chats, monitor for spam
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     synchronized void onPlayerChat(AsyncPlayerChatEvent event)

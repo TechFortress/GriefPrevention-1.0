@@ -2447,14 +2447,17 @@ class PlayerEventHandler implements Listener
                             //if it didn't succeed, tell the player why
                             if (!result.succeeded)
                             {
+                                // If we have a cancel message, we should use that
                                 if (result.cancelMessage != null)
                                 {
                                     GriefPrevention.sendMessage(player, TextMode.Err, result.cancelMessage);
                                 }
                                 else
                                 {
+                                    // Assume there is a subdivision overlap
                                     GriefPrevention.sendMessage(player, TextMode.Err, Messages.CreateSubdivisionOverlap);
 
+                                    // If a claim is provided, we can visualize it
                                     if (result.claim != null)
                                     {
                                         Visualization visualization = Visualization.FromClaim(result.claim, clickedBlock.getY(), VisualizationType.ErrorClaim, player.getLocation());

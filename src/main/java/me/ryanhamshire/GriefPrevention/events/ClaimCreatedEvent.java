@@ -29,6 +29,8 @@ public class ClaimCreatedEvent extends Event implements Cancellable
 
     private boolean cancelled = false;
 
+    private String cancelMessage = null;
+
     public ClaimCreatedEvent(Claim claim, CommandSender creator)
     {
         this.claim = claim;
@@ -51,6 +53,24 @@ public class ClaimCreatedEvent extends Event implements Cancellable
     public void setCancelled(boolean b)
     {
         this.cancelled = b;
+    }
+
+    /**
+     * Get a message for cancellation optionally provided by an event handler
+     *
+     * @return String
+     */
+    public String getCancelMessage()
+    {
+        return cancelMessage;
+    }
+
+    /**
+     * @param cancelMessage A message optionally specified when cancelling this event
+     */
+    public void setCancelMessage(String cancelMessage)
+    {
+        this.cancelMessage = cancelMessage;
     }
 
     /**

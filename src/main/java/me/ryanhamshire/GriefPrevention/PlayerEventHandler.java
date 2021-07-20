@@ -952,7 +952,7 @@ class PlayerEventHandler implements Listener
         }
 
         //silence notifications when the player is banned
-        if (isBanned && instance.config_silence_bans)
+        if (isBanned && instance.config_silenceBans)
         {
             event.setQuitMessage(null);
         }

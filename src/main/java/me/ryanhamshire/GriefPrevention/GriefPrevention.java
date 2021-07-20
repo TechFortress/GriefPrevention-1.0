@@ -207,7 +207,6 @@ public class GriefPrevention extends JavaPlugin
 
     public boolean config_trollFilterEnabled;                       //whether to auto-mute new players who use banned words right after joining
     public boolean config_banPlayersUsingBannedWords;               //whether to auto-ban players who use banned words
-    public boolean config_silence_bans;                             //whether to remove leave messages on banned players
 
     public HashMap<String, Integer> config_seaLevelOverride;        //override for sea level, because bukkit doesn't report the right value for all situations
 

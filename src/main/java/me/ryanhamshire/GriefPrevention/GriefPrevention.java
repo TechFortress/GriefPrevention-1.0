@@ -206,7 +206,7 @@ public class GriefPrevention extends JavaPlugin
     public int config_ipLimit;                                      //how many players can share an IP address
 
     public boolean config_trollFilterEnabled;                       //whether to auto-mute new players who use banned words right after joining
-    public boolean config_silence_bans;                             //whether to remove leave messages on banned players
+    public boolean config_silenceBans;                              //whether to remove quit messages on banned players
 
     public HashMap<String, Integer> config_seaLevelOverride;        //override for sea level, because bukkit doesn't report the right value for all situations
 

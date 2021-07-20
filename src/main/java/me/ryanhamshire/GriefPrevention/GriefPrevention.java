@@ -620,7 +620,7 @@ public class GriefPrevention extends JavaPlugin
         this.config_smartBan = config.getBoolean("GriefPrevention.SmartBan", true);
         this.config_trollFilterEnabled = config.getBoolean("GriefPrevention.Mute New Players Using Banned Words", true);
         this.config_ipLimit = config.getInt("GriefPrevention.MaxPlayersPerIpAddress", 3);
-        this.config_silence_bans = config.getBoolean("GriefPrevention.SilenceBans", true);
+        this.config_silenceBans = config.getBoolean("GriefPrevention.SilenceBans", true);
 
         this.config_endermenMoveBlocks = config.getBoolean("GriefPrevention.EndermenMoveBlocks", false);
         this.config_silverfishBreakBlocks = config.getBoolean("GriefPrevention.SilverfishBreakBlocks", false);
@@ -873,7 +873,7 @@ public class GriefPrevention extends JavaPlugin
         outConfig.set("GriefPrevention.SmartBan", this.config_smartBan);
         outConfig.set("GriefPrevention.Mute New Players Using Banned Words", this.config_trollFilterEnabled);
         outConfig.set("GriefPrevention.MaxPlayersPerIpAddress", this.config_ipLimit);
-        outConfig.set("GriefPrevention.SilenceBans", this.config_silence_bans);
+        outConfig.set("GriefPrevention.SilenceBans", this.config_silenceBans);
 
         outConfig.set("GriefPrevention.Siege.Worlds", siegeEnabledWorldNames);
         outConfig.set("GriefPrevention.Siege.BreakableBlocks", breakableBlocksList);

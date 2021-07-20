@@ -254,6 +254,5 @@ public enum Messages
     StandInSubclaim,
     SubclaimRestricted,
     SubclaimUnrestricted,
-    NetherPortalTrapDetectionMessage,
-    BannedForProfanity
+    NetherPortalTrapDetectionMessage
 }

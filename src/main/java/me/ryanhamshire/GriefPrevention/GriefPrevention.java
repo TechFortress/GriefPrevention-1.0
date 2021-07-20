@@ -207,8 +207,11 @@ public class GriefPrevention extends JavaPlugin
 
     public boolean config_trollFilterEnabled;                       //whether to auto-mute new players who use banned words right after joining
 <<<<<<< HEAD
+<<<<<<< HEAD
     public boolean config_banPlayersUsingBannedWords;               //whether to auto-ban players who use banned words
     public boolean config_silence_bans;                             //whether to remove leave messages on banned players
+=======
+>>>>>>> parent of 1398c3d (Option to unsilence bans)
 =======
 >>>>>>> parent of 1398c3d (Option to unsilence bans)
 

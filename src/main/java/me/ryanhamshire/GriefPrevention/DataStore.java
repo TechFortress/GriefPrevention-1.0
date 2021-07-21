@@ -1738,6 +1738,7 @@ public abstract class DataStore
         this.addDefault(defaults, Messages.RadiusRequiresGoldenShovel, "You must be holding a golden shovel when specifying a radius.", null);
         this.addDefault(defaults, Messages.ClaimTooSmallForActiveBlocks, "This claim isn't big enough to support any active block types (hoppers, spawners, beacons...).  Make the claim bigger first.", null);
         this.addDefault(defaults, Messages.TooManyActiveBlocksInClaim, "This claim is at its limit for active block types (hoppers, spawners, beacons...).  Either make it bigger, or remove other active blocks first.", null);
+        this.addDefault(defaults, Messages.BannedForProfanity, "Profanity", null);
 
         this.addDefault(defaults, Messages.BookAuthor, "BigScary", null);
         this.addDefault(defaults, Messages.BookTitle, "How to Claim Land", null);

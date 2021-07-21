@@ -202,6 +202,15 @@ class PlayerEventHandler implements Listener
             recipients.clear();
             recipients.add(player);
 
+            if (instance.config_banPlayersUsingBannedWords)
+            {
+                GriefPrevention.AddLogEntry("Auto-banned player " + player.getName() + " for profanity.", CustomLogEntryTypes.AdminActivity);
+                GriefPrevention.AddLogEntry(notificationMessage, CustomLogEntryTypes.MutedChat, false);
+                PlayerKickBanTask task = new PlayerKickBanTask(player, instance.dataStore.getMessage(Messages.BannedForProfanity), "GriefPrevention", true);
+                instance.getServer().getScheduler().scheduleSyncDelayedTask(instance, task, 1L);
+                return;
+            }
+
             //if player not new warn for the first infraction per play session.
             if (!GriefPrevention.isNewToServer(player))
             {

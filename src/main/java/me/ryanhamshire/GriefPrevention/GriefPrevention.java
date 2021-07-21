@@ -206,6 +206,7 @@ public class GriefPrevention extends JavaPlugin
     public int config_ipLimit;                                      //how many players can share an IP address
 
     public boolean config_trollFilterEnabled;                       //whether to auto-mute new players who use banned words right after joining
+    public boolean config_banPlayersUsingBannedWords;               //whether to auto-ban players who use banned words
 
     public HashMap<String, Integer> config_seaLevelOverride;        //override for sea level, because bukkit doesn't report the right value for all situations
 
@@ -618,6 +619,7 @@ public class GriefPrevention extends JavaPlugin
 
         this.config_smartBan = config.getBoolean("GriefPrevention.SmartBan", true);
         this.config_trollFilterEnabled = config.getBoolean("GriefPrevention.Mute New Players Using Banned Words", true);
+        this.config_banPlayersUsingBannedWords = config.getBoolean("GriefPrevention.BanPlayersUsingBannedWords", false);
         this.config_ipLimit = config.getInt("GriefPrevention.MaxPlayersPerIpAddress", 3);
 
         this.config_endermenMoveBlocks = config.getBoolean("GriefPrevention.EndermenMoveBlocks", false);
@@ -870,6 +872,7 @@ public class GriefPrevention extends JavaPlugin
 
         outConfig.set("GriefPrevention.SmartBan", this.config_smartBan);
         outConfig.set("GriefPrevention.Mute New Players Using Banned Words", this.config_trollFilterEnabled);
+        outConfig.set("GriefPrevention.BanPlayersUsingBannedWords", this.config_banPlayersUsingBannedWords);
         outConfig.set("GriefPrevention.MaxPlayersPerIpAddress", this.config_ipLimit);
 
         outConfig.set("GriefPrevention.Siege.Worlds", siegeEnabledWorldNames);
